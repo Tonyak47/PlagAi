@@ -41,12 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',                  # Django REST Framework
     'rest_framework_simplejwt',        # JWT support
     'ai_backend_checker',
-    'image_cropping',
-<<<<<<< HEAD
-    'easy_thumbnails',
-=======
-    'easy_thumbnails',
->>>>>>> e1dc1b7 (Initial commit)
+    'image_cropping',
+    'easy_thumbnails',
     #'django_cors_headers',
 ]
 
