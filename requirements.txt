@@ -10,12 +10,8 @@ whitenoise
 django-cors-headers
 django-image-cropping
 easy-thumbnails 
-<<<<<<< HEAD
-python-Levenshtein
-=======
 python-Levenshtein
 matplotlib
 PyPDF2
 python-docx
 requests
->>>>>>> e1dc1b7 (Initial commit)
