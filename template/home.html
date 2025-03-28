@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Home - AI Backend Checker{% endblock %}
+{% block extra_head %}
+<style>
+  @keyframes fadeInOut {
+    0% { opacity: 0; }
+<<<<<<< HEAD
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .animated-text {
+    animation: fadeInOut 3s ease-in-out infinite;
+=======
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+  .animated-text {
+    animation: fadeInOut 5s ease-in-out infinite;
+>>>>>>> e1dc1b7 (Initial commit)
+    color: #007bff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .home-section { margin-top: 30px; }
+</style>
+{% endblock %}
+{% block content %}
+<<<<<<< HEAD
+=======
+<!-- Type Animation Section -->
+<div class="animated-text">
+  <span id="typed"></span>
+</div>
+>>>>>>> e1dc1b7 (Initial commit)
+<div class="home-section">
+  <h1 class="animated-text">Welcome!</h1>
+  <p class="lead">
+    This platform uses advanced AI to detect plagiarism in both text and code. Plagiarism is the act of using someone else’s work without proper credit and can have serious consequences.
+  </p>
+  <p class="lead">
+    Verify the originality of your work and maintain your academic and professional integrity.
+  </p>
+  <hr class="my-4">
+  {% if user.is_authenticated %}
+    <a class="btn btn-primary btn-lg" href="{% url 'dashboard_web' %}" role="button">Go to Dashboard</a>
+  {% else %}
+    <a class="btn btn-primary btn-lg" href="{% url 'login_web' %}" role="button">Login</a>
+    <a class="btn btn-success btn-lg" href="{% url 'register_web' %}" role="button">Register</a>
+  {% endif %}
+</div>
+<<<<<<< HEAD
+{% endblock %}
+=======
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typed = new Typed('#typed', {
+    strings: [
+      "Welcome to AI Plagiarism Checker!",
+      "We use  advanced AI to detect plagiarism in text and code.",
+      "Plagiarism is presenting someone else's work as your own without proper credit.",
+      "Offenses like copying and unoriginal work can have serious consequences.",
+      "Stay original, maintain academic and professional integrity."
+    ],
+    typeSpeed: 70,
+    backSpeed:  80,
+    loop: true
+  });
+</script>
+{% endblock %}
+>>>>>>> e1dc1b7 (Initial commit)

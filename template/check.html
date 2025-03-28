@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% block title %}Plagiarism & Code Checker{% endblock %}
+{% block extra_head %}
+<style>
+  .check-container {
+    margin-top: 30px;
+  }
+  .form-section {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+  .form-section h4 {
+    margin-bottom: 15px;
+  }
+<<<<<<< HEAD
+</style>
+{% endblock %}
+=======
+  .highlighted-text {
+    background-color: yellow;
+    font-weight: bold;
+  }
+  .result-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+  }
+  .result-table th, .result-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  .result-table th {
+    background-color: #f2f2f2;
+  }
+</style>
+{% endblock %}
+
+>>>>>>> e1dc1b7 (Initial commit)
+{% block content %}
+<div class="check-container">
+  <h2 class="text-center mb-4">Plagiarism & Code Checker</h2>
+
+<<<<<<< HEAD
+  <!-- Form for Text Plagiarism Checking -->
+=======
+  <!-- Text Plagiarism Check -->
+>>>>>>> e1dc1b7 (Initial commit)
+  <div class="form-section">
+    <h4>Check Text for Plagiarism</h4>
+    <form method="post" enctype="multipart/form-data" action="{% url 'check_web' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="text_input">Paste Text:</label>
+        <textarea name="text_input" id="text_input" class="form-control" rows="6" placeholder="Paste your text here..."></textarea>
+      </div>
+      <div class="form-group">
+<<<<<<< HEAD
+        <label for="text_file">Or Upload a Text File:</label>
+        <input type="file" name="text_file" id="text_file" class="form-control-file">
+      </div>
+      <button type="submit" name="check_text" class="btn btn-primary btn-block">Check Text</button>
+    </form>
+    {% if result_text %}
+    <div class="alert alert-info mt-3">
+      <h5>Text Check Result:</h5>
+      <p><strong>Similarity Score:</strong> 
+        {% if result_text.similarity_score %}
+          {{ result_text.similarity_score }}%
+        {% else %}
+          N/A
+        {% endif %}
+      </p>
+      <p>{{ result_text.report }}</p>
+=======
+        <label for="text_file">Or Upload a File (any type):</label>
+        <input type="file" name="text_file" id="text_file" class="form-control-file" multiple>
+      </div>
+      <button type="submit" name="check_text" class="btn btn-primary btn-block">Check Text</button>
+    </form>
+    
+    {% if result_text %}
+    <div class="alert alert-info mt-3">
+      <h5>Text Check Result:</h5>
+      <p><strong>Similarity Score:</strong> {{ result_text.similarity_score|floatformat:2 }}%</p>
+      <p><strong>Matched Text:</strong> {{ result_text.matched_text }}</p>
+      <p>{{ result_text.report|safe }}</p>
+
+      {% if result_text.heatmap %}
+      <h6>Similarity Heatmap:</h6>
+      <img src="data:image/png;base64,{{ result_text.heatmap }}" alt="Plagiarism Heatmap">
+      {% endif %}
+
+      <h6>Detailed Comparison:</h6>
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Original Text</th>
+            <th>Matched Reference</th>
+            <th>Similarity (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ result_text.input_text }}</td>
+            <td>{{ result_text.matched_text }}</td>
+            <td>{{ result_text.similarity_score|floatformat:2 }}%</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <a class="btn btn-success" href="{% url 'download_report' %}?type=text">Download Text Report</a>
+>>>>>>> e1dc1b7 (Initial commit)
+    </div>
+    {% endif %}
+  </div>
+
+<<<<<<< HEAD
+  <!-- Form for Code Plagiarism Checking -->
+=======
+  <!-- Code Plagiarism Check -->
+>>>>>>> e1dc1b7 (Initial commit)
+  <div class="form-section">
+    <h4>Check Code for Plagiarism</h4>
+    <form method="post" enctype="multipart/form-data" action="{% url 'check_web' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="code_input">Paste Code:</label>
+        <textarea name="code_input" id="code_input" class="form-control" rows="6" placeholder="Paste your code here..."></textarea>
+      </div>
+      <div class="form-group">
+<<<<<<< HEAD
+        <label for="code_file">Or Upload a Code File:</label>
+        <input type="file" name="code_file" id="code_file" class="form-control-file">
+      </div>
+      <button type="submit" name="check_code" class="btn btn-primary btn-block">Check Code</button>
+    </form>
+    {% if result_code %}
+    <div class="alert alert-info mt-3">
+      <h5>Code Check Result:</h5>
+      <p><strong>Similarity Score:</strong>
+        {% if result_code.similarity_score %}
+          {{ result_code.similarity_score }}%
+        {% else %}
+          N/A
+        {% endif %}
+      </p>
+      <p>{{ result_code.report }}</p>
+=======
+        <label for="code_file">Or Upload a File (any type):</label>
+        <input type="file" name="code_file" id="code_file" class="form-control-file" multiple>
+      </div>
+      <button type="submit" name="check_code" class="btn btn-primary btn-block">Check Code</button>
+    </form>
+    
+    {% if result_code %}
+    <div class="alert alert-info mt-3">
+      <h5>Code Check Result:</h5>
+      <p><strong>Similarity Score:</strong> {{ result_code.similarity_score|floatformat:2 }}%</p>
+      <p><strong>Matched Code:</strong> {{ result_code.matched_code }}</p>
+      <p>{{ result_code.report|safe }}</p>
+
+      <h6>Detailed Comparison:</h6>
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Original Code</th>
+            <th>Matched Reference</th>
+            <th>Similarity (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><pre>{{ result_code.input_code }}</pre></td>
+            <td><pre>{{ result_code.matched_code }}</pre></td>
+            <td>{{ result_code.similarity_score|floatformat:2 }}%</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <a class="btn btn-success" href="{% url 'download_report' %}?type=code">Download Code Report</a>
+>>>>>>> e1dc1b7 (Initial commit)
+    </div>
+    {% endif %}
+  </div>
+
+  <br><br>
+  <a class="btn btn-secondary btn-block" href="{% url 'dashboard_web' %}">Back to Dashboard</a>
+</div>
+<<<<<<< HEAD
+{% endblock %}
+=======
+{% endblock %}
+>>>>>>> e1dc1b7 (Initial commit)

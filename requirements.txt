@@ -1,0 +1,21 @@
+Django
+djangorestframework
+djangorestframework-simplejwt
+scikit-learn  # Replaces Torch-based AI
+fuzzywuzzy  # For simple text similarity checking
+python-magic
+Pillow
+gunicorn
+whitenoise
+django-cors-headers
+django-image-cropping
+easy-thumbnails 
+<<<<<<< HEAD
+python-Levenshtein
+=======
+python-Levenshtein
+matplotlib
+PyPDF2
+python-docx
+requests
+>>>>>>> e1dc1b7 (Initial commit)

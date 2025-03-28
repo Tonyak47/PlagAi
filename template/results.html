@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Plagiarism Results{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center">Plagiarism Check Result</h2>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <h5>Checked Content:</h5>
+      <p>{{ result.text }}</p>
+      <h4 class="text-danger">Plagiarism: {{ result.percentage }}%</h4>
+    </div>
+  </div>
+
+  <a href="{% url 'check_plagiarism' %}" class="btn btn-primary mt-3">Check Another</a>
+</div>
+{% endblock %}

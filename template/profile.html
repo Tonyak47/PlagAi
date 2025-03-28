@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Profile - AI Backend Checker{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="text-center">User Profile</h2>
+  <div class="text-center mb-4">
+    <img src="{{ user.profile.profile_picture.url }}" class="rounded-circle" width="150" height="150" alt="Profile Picture">
+  </div>
+    <h2>{{ user.username }}</h2>
+    <p>Email: {{ user.email }}</p>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Update Profile</button>
+  </form>
+</div>
+{% endblock %}

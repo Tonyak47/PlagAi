@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - AI Backend Checker{% endblock %}
+{% block extra_head %}
+<style>
+  .sidebar {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    padding: 15px;
+    border-right: 1px solid #e9ecef;
+  }
+  .sidebar h4 {
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+  .sidebar a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.3s;
+  }
+  .sidebar a:hover {
+    background-color: #e9ecef;
+    color: #007bff;
+  }
+  .content-area {
+    padding: 20px;
+  }
+</style>
+{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-3 sidebar">
+    <h4>Navigation</h4>
+    <a href="{% url 'dashboard_web' %}">Dashboard Home</a>
+    <a href="{% url 'check_web' %}">Check Plagiarism/Code</a>
+    <a href="{% url 'profile_web' %}">Profile</a>
+    <a href="{% url 'logout_web' %}">Logout</a>
+  </div>
+  <div class="col-md-9 content-area">
+    <h2>Dashboard</h2>
+    <p>Welcome, {{ user.username }}! Below are your past submissions:</p>
+    <div class="table-responsive mt-4">
+      <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Type</th>
+            <th>Similarity</th>
+            <th>Report</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for submission in submissions %}
+          <tr>
+            <td>{{ submission.submission_type }}</td>
+            <td>
+              {% if submission.similarity_score %}
+                {{ submission.similarity_score }}%
+              {% else %}
+                N/A
+              {% endif %}
+            </td>
+            <td>{{ submission.report }}</td>
+            <td>{{ submission.created_at|date:"Y-m-d H:i" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4" class="text-center">No submissions found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
